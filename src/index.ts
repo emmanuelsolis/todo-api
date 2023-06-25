@@ -4,6 +4,7 @@ import bodyParser from 'body-parser';
 import cookieParser from  'cookie-parser'
 import cors from 'cors';
 import compression from 'compression'
+import mongoose from 'mongoose';
 
 const app = express();
 
@@ -23,3 +24,7 @@ server.listen(8080, () => {
     console.log('Server is running on port 8080');
 })
 
+const MONGO_URL = 'mongodb+srv://Admin:WjYlqQvFPgwNCQf1@cluster1.chodwcu.mongodb.net/?retryWrites=true&w=majority'
+mongoose.Promise = Promise
+mongoose.connect(MONGO_URL)
+mongoose.connection.on('error', (error: Error) => console.log(error))
